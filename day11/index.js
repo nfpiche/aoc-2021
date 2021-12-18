@@ -2,16 +2,6 @@ const path = require('path');
 const _ = require('lodash');
 const fs = require('fs');
 
-const deltas = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, -1]]
-
-function getNeighbors(matrix, row, col) {
-  return _.compact(deltas.map(([dr, dc]) => {
-    const access = `[${row+dr}][${col+dc}]`;
-
-    return _.get(matrix, access);
-  }));
-}
-
 const filePath = path.join(process.cwd(), './input.txt');
 const lines = fs.readFileSync(filePath).toString().split('\n').filter(Boolean).map((line) => line.split(''))
 let flashes = 0;
